@@ -14,6 +14,10 @@
             margin: 0;
             overflow: hidden;
         }
+        #WebGL-output {
+            position: center;
+            background-color: #599bdc;
+        }
     </style>
 </head>
 <body>
@@ -44,7 +48,14 @@
         webGLRenderer.setSize(window.innerWidth, window.innerHeight);
         webGLRenderer.shadowMapEnabled = true;
 
-        var circle = createMesh(new THREE.CircleGeometry(4, 10, 0.3 * Math.PI * 2, 0.3 * Math.PI * 2));
+        // 圆形构造 THREE.CircleGeometry 参数：半径+分段+起始角+画转角度
+        // var circle = createMesh(new THREE.CircleGeometry(6, 20, 0.8 * Math.PI * 2, 0.5 * Math.PI * 2));
+        // 半圆， 第三个参数表示起始画位
+        var circle = createMesh(new THREE.CircleGeometry(6, 20, Math.PI * 0.2, 0.5 * Math.PI * 2));
+
+        // 平面方位，默认是平面立起来的，右手规则沿x轴旋转PI/2，即平躺
+        circle.rotation.x = -Math.PI/2;
+
         // add the sphere to the scene
         scene.add(circle);
 
